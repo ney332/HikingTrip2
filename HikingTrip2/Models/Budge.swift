@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Budge {
+    var amount: Double
+    var current: String
+}

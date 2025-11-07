@@ -1,8 +1,14 @@
+////
+////  PlanerViewModel.swift
+////  HikingTrip2
+////
+////  Created by Lorran Silva on 10/10/25.
+////
 //
-//  PlanerViewModel.swift
-//  HikingTrip2
+//import Foundation
+//import MapKit
+//import CoreLocation
 //
-//  Created by Lorran Silva on 10/10/25.
-//
+//class PlanerViewModel: ObservableObject {
 
-import Foundation
+//}

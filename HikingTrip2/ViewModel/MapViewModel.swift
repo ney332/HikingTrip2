@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import MapKit
+
+class MapViewModel: ObservableObject {
+    @Published var region = MKCoordinateRegion()
+    @Published var pins: [MKPointAnnotation] = []
+    
+    
+}

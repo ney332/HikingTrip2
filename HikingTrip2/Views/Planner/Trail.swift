@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Trail: Identifiable, Codable, Equatable {
     let id: String
@@ -13,4 +14,6 @@ struct Trail: Identifiable, Codable, Equatable {
     let location: String
     let distanceKm: Double
     let difficulty: String
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
 }

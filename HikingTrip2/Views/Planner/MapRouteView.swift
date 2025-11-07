@@ -1,10 +1,3 @@
-//
-//  MapRouteView.swift
-//  HikingTrip2
-//
-//  Created by Assistant on 10/10/25.
-//
-
 import SwiftUI
 import MapKit
 import CoreLocation
@@ -23,8 +16,8 @@ struct MapRouteView: View {
             MapPolyline(route.polyline)
                 .stroke(.blue, lineWidth: 4)
 
-            // Pins de origem e destino
-            MapAnnotation(coordinate: origin) {
+            // Pins de origem e destino (Annotation é MapContent)
+            Annotation("Origem", coordinate: origin) {
                 VStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.title2)
@@ -37,7 +30,7 @@ struct MapRouteView: View {
                 }
             }
 
-            MapAnnotation(coordinate: destination) {
+            Annotation("Destino", coordinate: destination) {
                 VStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.title2)
@@ -52,7 +45,8 @@ struct MapRouteView: View {
 
             // Pins das trilhas sugeridas
             ForEach(trails) { trail in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: trail.latitude, longitude: trail.longitude)) {
+                let coord = CLLocationCoordinate2D(latitude: trail.coordinates.lat, longitude: trail.coordinates.lon)
+                Annotation(trail.name, coordinate: coord) {
                     VStack(spacing: 4) {
                         Image(systemName: "figure.hiking")
                             .font(.headline)

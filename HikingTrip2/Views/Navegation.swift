@@ -15,9 +15,9 @@ struct Navegation: View {
                     title: { Text("home") },
                     icon: { Image(systemName: "house.fill") }
                 )}
-            PlannerView()
+            TrailListView()
                 .tabItem{ Label(
-                    title: { Text("Planejar") },
+                    title: { Text("Trilhas") },
                     icon: { Image(systemName: "backpack") }
                 )}
             MapView()
@@ -25,8 +25,11 @@ struct Navegation: View {
                     title: { Text("Map") },
                     icon: { Image(systemName: "map") }
                 )}
-            PerfilView()
-                
+           PerfilView()
+                .tabItem{ Label(
+                    title: { Text("profile") },
+                    icon: { Image(systemName: "person.fill") }
+                )}
         }
     }
 }

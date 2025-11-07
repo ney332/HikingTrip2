@@ -7,12 +7,28 @@
 
 import SwiftUI
 
-struct Perfil_view: View {
+struct PerfilView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Image(systemName: "person.circle.fill")
+                .resizable()
+                .frame(width:100, height: 100)
+                .padding()
+            
+            Text("üsername")
+                .font(.title)
+            
+            Button("sair"){
+                
+            }
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
     }
 }
 
 #Preview {
-    Perfil_view()
+    PerfilView()
 }

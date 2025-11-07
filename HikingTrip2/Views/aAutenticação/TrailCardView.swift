@@ -1,7 +1,7 @@
 // TrailCardView.swift
 import SwiftUI
 
-struct TrailCardView: View {
+struct DestinationCardView: View {
     let trail: Trail
 
     var body: some View {
@@ -28,7 +28,7 @@ struct TrailCardView: View {
                     .lineLimit(1)
 
                 HStack(spacing: 8) {
-                    Label("\(formatDistance(trail.distanceKm))", systemImage: "map")
+                    Label("\(formatDistance(trail.length_km))", systemImage: "map")
                         .font(.caption)
                     Label(trail.difficulty, systemImage: "flag")
                         .font(.caption)
@@ -49,14 +49,4 @@ struct TrailCardView: View {
     }
 }
 
-#Preview {
-    TrailCardView(trail: Trail(
-        id: "t1",
-        name: "Trilha do Mirante",
-        location: "Brasil",
-        distanceKm: 7.2,
-        difficulty: "Moderada",
-        latitude: -22.9,
-        longitude: -43.2
-    ))
-}
+
