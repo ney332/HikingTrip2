@@ -20,10 +20,10 @@ struct Navegation: View {
                     title: { Text("Trilhas") },
                     icon: { Image(systemName: "backpack") }
                 )}
-            MapView()
+            ExperienciasView()
                 .tabItem{ Label(
-                    title: { Text("Map") },
-                    icon: { Image(systemName: "map") }
+                    title: { Text("Experiências") },
+                    icon: { Image(systemName: "tent.2") }
                 )}
            PerfilView()
                 .tabItem{ Label(

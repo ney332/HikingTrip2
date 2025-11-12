@@ -1,22 +1,29 @@
-// LocationManager.swift
-import Foundation
+// LocationManimport Foundation
 import CoreLocation
+import Foundation
 
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var authorizationStatus: CLAuthorizationStatus
+    @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var currentLocation: CLLocation?
 
     private let manager = CLLocationManager()
 
     override init() {
-        self.authorizationStatus = manager.authorizationStatus
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
+
+        // Atualiza o status inicial (importante para iOS 14+)
+        authorizationStatus = manager.authorizationStatus
     }
 
     func requestWhenInUse() {
-        manager.requestWhenInUseAuthorization()
+        // Se ainda não foi decidido, dispara o popup
+        if authorizationStatus == .notDetermined {
+            manager.requestWhenInUseAuthorization()
+        } else if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+            manager.startUpdatingLocation()
+        }
     }
 
     func startUpdating() {
@@ -28,12 +35,15 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     // MARK: - Delegate
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
-        if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
-            startUpdating()
-        } else {
-            stopUpdating()
+        
+        switch authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            manager.startUpdatingLocation()
+        default:
+            manager.stopUpdatingLocation()
         }
     }
 

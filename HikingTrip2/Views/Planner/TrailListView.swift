@@ -10,6 +10,7 @@ import CoreLocation
 
 struct TrailListView: View {
     @State private var trails: [Trail] = []
+    @State private var searchText: String = ""
     private let service = APITrailService()
 
     // Location
@@ -18,21 +19,48 @@ struct TrailListView: View {
     @State private var locationAlertMessage: String = ""
     @State private var showSettingsButton: Bool = false
 
+    // Computed property para filtrar
+    private var filteredTrails: [Trail] {
+        if searchText.isEmpty {
+            return trails
+        } else {
+            return trails.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.country.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+
     var body: some View {
         NavigationView {
-            List(trails) { trail in
-                NavigationLink(destination: TrailDetailView(trail: trail)) {
-                    TrailCardView(trail: trail)
+            VStack {
+                // 🔍 Search bar
+                SearchBarView(searchText: $searchText)
+
+                if filteredTrails.isEmpty {
+                    VStack(spacing: 10) {
+                        Image(systemName: "magnifyingglass")
+                            .font(.largeTitle)
+                            .foregroundColor(.gray)
+                        Text("Nenhum destino encontrado")
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.top, 80)
+                } else {
+                    List(filteredTrails) { trail in
+                        NavigationLink(destination: TrailDetailView(trail: trail)) {
+                            TrailCardView(trail: trail)
+                        }
+                    }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Destinos")
             .onAppear {
                 handleLocationAuthorizationOnAppear()
-                // Carrega trilhas da API
                 service.fetchTrails { self.trails = $0 }
             }
             .onReceive(locationManager.$authorizationStatus) { status in
-                // Atualiza alerta quando o status mudar
                 updateAlertFor(status: status)
             }
             .alert("Permissão de Localização", isPresented: $showLocationAlert) {
@@ -52,18 +80,15 @@ struct TrailListView: View {
         let status = locationManager.authorizationStatus
         switch status {
         case .notDetermined:
-            // Mostra um alerta explicando antes do prompt do sistema
             locationAlertMessage = "Precisamos da sua localização para sugerir rotas e calcular trajetos até as trilhas próximas."
             showSettingsButton = false
             showLocationAlert = true
-            // Em seguida, dispara a solicitação do sistema
             locationManager.requestWhenInUse()
         case .denied, .restricted:
             locationAlertMessage = "Permissão de localização negada. Para aproveitar os recursos de rota, habilite a localização nos Ajustes."
             showSettingsButton = true
             showLocationAlert = true
         case .authorizedAlways, .authorizedWhenInUse, .authorized:
-            // Autorizado — nada a fazer
             break
         @unknown default:
             break
@@ -73,7 +98,6 @@ struct TrailListView: View {
     private func updateAlertFor(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
-            // Se ainda não determinado, podemos manter a mensagem informativa
             locationAlertMessage = "Precisamos da sua localização para sugerir rotas e calcular trajetos até as trilhas próximas."
             showSettingsButton = false
         case .denied, .restricted:
@@ -81,7 +105,6 @@ struct TrailListView: View {
             showSettingsButton = true
             showLocationAlert = true
         case .authorizedAlways, .authorizedWhenInUse, .authorized:
-            // Oculta alerta quando autorizado
             showLocationAlert = false
         @unknown default:
             break
@@ -131,6 +154,23 @@ struct TrailCardView: View {
     }
 }
 
-#Preview{
+// MARK: - SearchBarView
+struct SearchBarView: View {
+    @Binding var searchText: String
+
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("Buscar destino...", text: $searchText)
+                .textInputAutocapitalization(.never)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(8)
+        .padding(.horizontal)
+    }
+}
+
+#Preview {
     TrailListView()
 }

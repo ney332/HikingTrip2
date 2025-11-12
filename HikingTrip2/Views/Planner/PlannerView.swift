@@ -5,27 +5,27 @@
 ////  Created by Lorran Silva on 08/10/25.
 ////
 //
-import SwiftUI
-
-struct PlannerView: View {
-    @State private var viewModel = TrailListView()
-    @FocusState private var focusedField: Field?
-
-    enum Field {
-        case origin, destination, search
-    }
-
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                   
-                    Spacer(minLength: 24)
-                }
-            }
-            .navigationTitle("Planejar trilhas")
-        }
-    }
+//import SwiftUI
+//
+//struct PlannerView: View {
+//    @State private var viewModel = TrailListView()
+//    @FocusState private var focusedField: Field?
+//
+//    enum Field {
+//        case origin, destination, search
+//    }
+//
+//    var body: some View {
+//        NavigationStack {
+//            ScrollView {
+//                VStack(spacing: 16) {
+//                   
+//                    Spacer(minLength: 24)
+//                }
+//            }
+//            .navigationTitle("Planejar trilhas")
+//        }
+//    }
 
 //    // MARK: - Sections
 //
@@ -133,4 +133,4 @@ struct PlannerView: View {
 //
 //#Preview {
 //    PlannerView()
-}
+

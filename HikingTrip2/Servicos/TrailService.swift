@@ -34,7 +34,6 @@ final class TrailService: TrailServicing {
         ]
         let difficulties = ["Moderada", "Fácil", "Difícil", "Moderada", "Fácil"]
 
-        // Coordenadas fictícias baseadas no hash do texto para variar levemente
         func pseudoCoordOffset(for index: Int) -> (lat: Double, lon: Double) {
             let baseLat = -22.90
             let baseLon = -43.20

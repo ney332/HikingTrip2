@@ -19,7 +19,7 @@ struct LoginView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             
-            // Sobreposição para melhorar contraste do texto/botão (opcional)
+            // Sobreposição para melhorar contraste do texto
             LinearGradient(
                 colors: [Color.black.opacity(0.4), Color.black.opacity(0.2), Color.clear],
                 startPoint: .bottom,
@@ -30,7 +30,6 @@ struct LoginView: View {
             // Conteúdo principal
             VStack(spacing: 10) {
                 
-                
                 // Título
                 Text("HikingTrip")
                     .font(.system(size: 44, weight: .bold, design: .rounded))
@@ -38,7 +37,7 @@ struct LoginView: View {
                     .shadow(radius: 8)
                     .padding(.top, 70)
                 
-                Text("Descubra trilhas e destinos incríveis")
+                Text("Seus melhores momentos")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.9))
                     .multilineTextAlignment(.center)
@@ -46,26 +45,21 @@ struct LoginView: View {
                 
                 Spacer()
                 
-                // Botão Entrar
-                Button {
-                    showHome = true
-                } label: {
-                    Text("Entrar")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 160)
-                        .padding(.vertical, 14)
-                        .background(Color.accentColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                        .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 4)
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 32)
-                
+                // Indicador de carregamento
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1.5)
+                    .padding(.bottom, 32)
             }
         }
         .fullScreenCover(isPresented: $showHome) {
             Navegation()
+        }
+        .onAppear {
+            // Espera 2.5 segundos e navega para a home automaticamente
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                showHome = true
+            }
         }
     }
 }
@@ -73,4 +67,3 @@ struct LoginView: View {
 #Preview {
     LoginView()
 }
-
