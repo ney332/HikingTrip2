@@ -26,7 +26,7 @@ struct ExperienciasView: View {
                             .clipped()
                             .overlay(
                                 LinearGradient(
-                                    gradient: Gradient(colors: [.black.opacity(0.9), .blue.opacity(0.5)]),
+                                    gradient: Gradient(colors: [.black.opacity(2.0), .blue.opacity(1.35)]),
                                     startPoint: .top,
                                     endPoint: .bottom
                                 )
@@ -38,9 +38,9 @@ struct ExperienciasView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Experiências")
                                 .font(.system(size: 38, weight: .bold, design: .rounded))
-                                .foregroundStyle(LinearGradient(colors: [.green, .mint.opacity(0.9)], startPoint: .leading, endPoint: .trailing))
+                                .foregroundStyle(LinearGradient(colors: [.white, .blue.opacity(2.10)], startPoint: .leading, endPoint: .trailing))
 
-                            Text("Descubra novas aventuras e sabores 🌎")
+                            Text("Descubra seu proximo passo ")
                                 .font(.subheadline)
                                 .foregroundColor(.white.opacity(0.9))
                         }
@@ -110,7 +110,7 @@ struct StyledSectionView: View {
     var isFullWidth: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
                 Image(systemName: "figure.hiking")
                     .font(.title3)
@@ -197,11 +197,7 @@ struct ExperienceCardView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
-                    
-                    Text(experience.tag)
-                    font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+
                 
             }
             .frame(width: isFullWidth ? 350 : 220, alignment: .leading)

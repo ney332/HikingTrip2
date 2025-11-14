@@ -18,17 +18,17 @@ struct Navegation: View {
             TrailListView()
                 .tabItem{ Label(
                     title: { Text("Trilhas") },
-                    icon: { Image(systemName: "backpack") }
+                    icon: { Image(systemName: "figure.hiking") }
                 )}
             ExperienciasView()
                 .tabItem{ Label(
                     title: { Text("Experiências") },
-                    icon: { Image(systemName: "tent.2") }
+                    icon: { Image(systemName: "backpack") }
                 )}
            PerfilView()
                 .tabItem{ Label(
                     title: { Text("profile") },
-                    icon: { Image(systemName: "person.fill") }
+                    icon: { Image(systemName: "gear") }
                 )}
         }
     }

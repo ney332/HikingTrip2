@@ -35,11 +35,11 @@ struct HomeView: View {
                         Image("heroMountains")
                             .resizable()
                             .scaledToFill()
-                            .frame(height: 220)
+                            .frame(height: 120)
                             .clipped()
                             .overlay(
                                 LinearGradient(
-                                    gradient: Gradient(colors: [.black.opacity(0.0), .black.opacity(0.45)]),
+                                    gradient: Gradient(colors: [.black.opacity(1.60), .green.opacity(0.55)]),
                                     startPoint: .top,
                                     endPoint: .bottom
                                 )
@@ -51,7 +51,7 @@ struct HomeView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("HikingTrip")
                                 .font(.system(size: 38, weight: .bold, design: .rounded))
-                                .foregroundStyle(LinearGradient(colors: [.white, .mint.opacity(0.9)], startPoint: .leading, endPoint: .trailing))
+                                .foregroundStyle(LinearGradient(colors: [.white, .green.opacity(6.9)], startPoint: .leading, endPoint: .trailing))
                             
                             Text("Descubra trilhas incríveis pelo mundo 🌍")
                                 .font(.subheadline)
