@@ -12,7 +12,7 @@ struct Navegation: View {
         TabView{
             HomeView()
                 .tabItem{ Label(
-                    title: { Text("home") },
+                    title: { Text("Inicio") },
                     icon: { Image(systemName: "house.fill") }
                 )}
             TrailListView()
@@ -27,7 +27,7 @@ struct Navegation: View {
                 )}
            PerfilView()
                 .tabItem{ Label(
-                    title: { Text("profile") },
+                    title: { Text("Ajustes") },
                     icon: { Image(systemName: "gear") }
                 )}
         }
