@@ -11,7 +11,6 @@ O app utiliza uma **API em Node.js** para fornecer dados atualizados sobre rotas
 - 🗺️ **Mapa interativo** com integração ao MapKit.  
 - 📍 **Localização em tempo real** do usuário (usando CoreLocation).  
 - 🧭 **Exploração de trilhas** com informações detalhadas (distância, dificuldade, altitude, duração).  
-- 🔖 **Favoritar trilhas** e salvar trajetos
 - 🌐 **Integração com backend** Node.js para listagem e atualização de trilhas.  
 
 ---
